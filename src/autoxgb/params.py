@@ -10,7 +10,8 @@ def get_params(trial, model_config):
         "n_estimators": trial.suggest_categorical("n_estimators", [7000, 15000, 20000]),
     }
     if model_config.use_gpu:
-        params["tree_method"] = "gpu_hist"
+        params["device"] = "cuda"
+        params["tree_method"] = "hist"
         params["gpu_id"] = 0
         params["predictor"] = "gpu_predictor"
     else:
